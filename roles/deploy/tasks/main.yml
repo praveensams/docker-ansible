@@ -1,0 +1,31 @@
+---
+# tasks file for deploy
+
+- name: installing docker compose
+  shell: |
+          [ -d /share ] || mkdir /share
+          [ -f /usr/bin/docker-compose ] || { curl -L https://github.com/docker/compose/releases/download/1.20.1/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose ; chmod +x /usr/bin/docker-compose ; }
+     
+- name: Coping multiple files
+  copy:
+    src: "{{item}}"
+    dest: "/share/{{item}}"
+  with_items:
+    - "{{docker}}"
+
+
+
+- name: Running main script
+  shell: |
+  
+         cd /share 
+
+         docker-compose up -d --force-recreate
+
+         docker cp sshserver1:/tmp/authorized_keys .
+
+         docker cp authorized_keys  sshserver2:/home/docker_root/.ssh/
+
+ 
+  
+        
