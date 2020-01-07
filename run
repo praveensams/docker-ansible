@@ -1,0 +1,1 @@
+ ansible-pull -i localhost -U https://github.com/praveensams/docker-ansible.git docker.yml
