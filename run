@@ -1,6 +1,6 @@
 
 
-for i in tmux ansible bind-utils net-tools
+for i in tmux ansible bind-utils net-tools git
  do
  ( rpm -qa | grep $i ) || yum install $i -y
  done
