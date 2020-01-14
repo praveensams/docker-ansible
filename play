@@ -1,0 +1,7 @@
+for i in tmux ansible bind-utils net-tools git
+ do
+ ( rpm -qa | grep $i ) || yum install $i -y
+ done
+
+ansible-pull -i localhost -U https://github.com/praveensams/docker-ansible.git docker.yml
+© 2020 GitHub, Inc.
