@@ -1,0 +1,27 @@
+- hosts: localhost
+  become: true
+
+  tasks:
+    - name: removing the packages
+      shell: |
+          amazon-linux-extras install docker -y
+
+    - name: Installing docker packages
+      yum:
+        name: ['docker','vim','net-tools']
+        state: "installed"
+    
+    - name: Starting the docker service 
+      service:
+        name: "docker"
+        state: "started"
+        enabled: yes  
+        
+    - name: Copying the docker compose
+      shell: |
+        sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /bin/docker-compose
+        sudo chmod +x /bin/docker-compose
+
+
+    
+  
