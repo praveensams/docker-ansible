@@ -1,4 +1,4 @@
-for i in tmux ansible bind-utils net-tools git
+for i in epel-release tmux ansible bind-utils net-tools git
  do
  ( rpm -q $i ) || yum install $i -y
  done
