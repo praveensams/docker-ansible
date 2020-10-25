@@ -1,4 +1,4 @@
-
+yum install epel-release -y
 
 for i in tmux ansible bind-utils net-tools git
  do
